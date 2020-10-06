@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ClimbAnchor : MonoBehaviour
 {
-    [SerializeField] public bool FromLeft = true;
+    public bool FromLeft = true;
 }
