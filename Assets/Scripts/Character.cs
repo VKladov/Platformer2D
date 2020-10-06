@@ -7,14 +7,14 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     [SerializeField] protected int _damage;
     [SerializeField] protected int _maxHealth;
     [SerializeField] private LayerMask _deathMaskLayer;
     [SerializeField] private UnityEvent _changedHealth;
 
-    [SerializeField] public UnityEvent Died;
+    public UnityEvent Died;
 
 
     protected Animator _animator;
@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
 
     public int Health { get; private set; }
     public bool IsAlive => Health > 0;
+
+    protected abstract void BeforeAwake();
 
     public void StartIgnore(Character character)
     {
@@ -39,8 +41,6 @@ public class Character : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         Health = _maxHealth;
     }
-
-    protected virtual void BeforeAwake() { }
 
     public void TakeDamage(int damage)
     {
