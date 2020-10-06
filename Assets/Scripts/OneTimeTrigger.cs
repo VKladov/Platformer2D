@@ -12,7 +12,8 @@ public class OneTimeTrigger : MonoBehaviour
         if (collision.GetComponent<Knight>())
         {
             _onEnter?.Invoke();
-            Destroy(this.gameObject);
+            _onEnter?.RemoveAllListeners();
+            Destroy(gameObject);
         }
     }
 }
